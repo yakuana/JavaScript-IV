@@ -114,7 +114,7 @@ class GameObject {
         if (obj.healthPoints > 0) {
         
             // inform user of what happened and the enemy's remaining healthpoints 
-            return `${this.name} depleted ${this.damage * 3} health point(s) from ${obj.name}. You have ${obj.healthPoints} remaining.`
+            return `${obj.takeDamage()} ${this.name} depleted ${this.damage * 3} health point(s) from ${obj.name}. You have ${obj.healthPoints} remaining.`
         }
         
         // zero or negative health points remaining 
@@ -271,10 +271,12 @@ class GameObject {
   
     console.log(spongeBob.healthPoints); // 100
     
-    // SpongeBob SquarePants took damage. Plankton depleted 40 health point(s) from SpongeBob SquarePants. You have 60 remaining.
+    // SpongeBob SquarePants took damage. Plankton depleted 40 health point(s) from SpongeBob SquarePants. 
+    // You have 60 remaining.
     console.log(plankton.hurt(spongeBob)); 
   
     console.log(plankton.healthPoints); // 250 
     
-    // Plankton took damage. SpongeBob SquarePants depleted 75 health point(s) from Plankton. You have 175 remaining.
+    // Plankton took damage. SpongeBob SquarePants depleted 75 health point(s) from Plankton. 
+    // You have 175 remaining.
     console.log(spongeBob.deplete(plankton)); 
