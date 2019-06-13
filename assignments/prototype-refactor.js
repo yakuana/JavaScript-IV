@@ -11,116 +11,113 @@ Prototype Refactor
 
 class GameObject {
     
-    constructor(attributes) {
-    
-    // Date() is the current time 
-    this.createdAt = attributes.createdAt; 
+  constructor(attributes) {
   
-    // name in attributes object = this.name 
-    this.name = attributes.name; 
-  
-    // dimensions in attributes object = this.dimensions 
-    this.dimensions = attributes.dimensions; 
+  // Date() is the current time 
+  this.createdAt = attributes.createdAt; 
 
-    }
+  // name in attributes object = this.name 
+  this.name = attributes.name; 
 
-    destroy() {
-    // Returns the name of the person who has been removed. 
-    return `${this.name} was removed from the game.`; 
-    } 
-  }
-  
-  
-  
-  /*
-    === CharacterStats ===
-    * healthPoints
-    * takeDamage() -> returns the string '<object name> took damage.'
-    * inherits GameObject
-  */
-  
-  class CharacterStats extends GameObject {
-    
-    constructor(charAttributes) {
-       
-        // inherits from GameObject 
-        super(charAttributes);
+  // dimensions in attributes object = this.dimensions 
+  this.dimensions = attributes.dimensions; 
 
-         // new assignments for CharacterStats 
-        this.healthPoints = charAttributes.healthPoints; 
-    }
-
-    takeDamage() {
-        // Returns name + took damage, but does not affect the health points of the object 
-        return `${this.name} took damage.`;
-    }
-  }
-  
-  
-  
-  /*
-    === Humanoid (Having an appearance or character resembling that of a human.) ===
-    * team
-    * weapons
-    * language
-    * greet() -> returns the string '<object name> offers a greeting in <object language>.'
-    * inherits CharacterStats and therefore also inherits GameObject 
-  */
-  
-  class Humanoid extends CharacterStats {
-    
-    constructor(humanAttributes) {
-        
-        // Allows inheritance of everything inside of CharacterStats 
-        super(humanAttributes);
-
-        // new assignments for humanoid 
-        this.team = humanAttributes.team; 
-        this.weapons = humanAttributes.weapons; 
-        this.language = humanAttributes.language;
-    }
-     
-    greet() {
-        // returns the name of the object and its language
-        return `${this.name} offers a greeting in ${this.language}.`
-    }
   }
 
+  destroy() {
+  // Returns the name of the person who has been removed. 
+  return `${this.name} was removed from the game.`; 
+  } 
+}
   
-   
-/* 
-    === Hero 
-    * damage -> amount of health points the hero can deduct from an enemy
-    * deplete() -> removes 3 * damage health points from an enemy 
+  
+/*
+  === CharacterStats ===
+  * healthPoints
+  * takeDamage() -> returns the string '<object name> took damage.'
+  * inherits GameObject
 */
   
-  class Hero extends Humanoid {
-    
-    constructor(heroAttributes) {
-        
-        // Allows inheritance of everything inside of Humanoid   
-        super(heroAttributes); 
-
-        // new assignments for hero 
-        this.damage = heroAttributes.damage; 
-    }
-    
-    deplete(obj) {
+class CharacterStats extends GameObject {
   
-        // subtract damage amount of health points from an object's health points 
-        obj.healthPoints -= this.damage * 3; 
+  constructor(charAttributes) {
       
-        // positive health points remaining 
-        if (obj.healthPoints > 0) {
-        
-            // inform user of what happened and the enemy's remaining healthpoints 
-            return `${obj.takeDamage()} ${this.name} depleted ${this.damage * 3} health point(s) from ${obj.name}. You have ${obj.healthPoints} remaining.`
-        }
-        
-        // zero or negative health points remaining 
-        return `${this.name} killed ${obj.name}! ${obj.destroy()} Super Heroes Never Lose!`; 
-    }
+      // inherits from GameObject 
+      super(charAttributes);
+
+        // new assignments for CharacterStats 
+      this.healthPoints = charAttributes.healthPoints; 
   }
+
+  takeDamage() {
+      // Returns name + took damage, but does not affect the health points of the object 
+      return `${this.name} took damage.`;
+  }
+}
+  
+  
+/*
+  === Humanoid (Having an appearance or character resembling that of a human.) ===
+  * team
+  * weapons
+  * language
+  * greet() -> returns the string '<object name> offers a greeting in <object language>.'
+  * inherits CharacterStats and therefore also inherits GameObject 
+*/
+
+class Humanoid extends CharacterStats {
+  
+  constructor(humanAttributes) {
+      
+      // Allows inheritance of everything inside of CharacterStats 
+      super(humanAttributes);
+
+      // new assignments for humanoid 
+      this.team = humanAttributes.team; 
+      this.weapons = humanAttributes.weapons; 
+      this.language = humanAttributes.language;
+  }
+    
+  greet() {
+      // returns the name of the object and its language
+      return `${this.name} offers a greeting in ${this.language}.`
+  }
+}
+
+
+/* 
+  === Hero 
+  * damage -> amount of health points the hero can deduct from an enemy
+  * deplete() -> removes 3 * damage health points from an enemy 
+*/
+
+class Hero extends Humanoid {
+  
+  constructor(heroAttributes) {
+      
+      // Allows inheritance of everything inside of Humanoid   
+      super(heroAttributes); 
+
+      // new assignments for hero 
+      this.damage = heroAttributes.damage; 
+  }
+  
+  deplete(obj) {
+
+      // subtract damage amount of health points from an object's health points 
+      obj.healthPoints -= this.damage * 3; 
+    
+      // positive health points remaining 
+      if (obj.healthPoints > 0) {
+      
+          // inform user of what happened and the enemy's remaining healthpoints 
+          return `${obj.takeDamage()} ${this.name} depleted ${this.damage * 3} health point(s) from ${obj.name}. You have ${obj.healthPoints} remaining.`
+      }
+      
+      // zero or negative health points remaining 
+      return `${this.name} killed ${obj.name}! ${obj.destroy()} Super Heroes Never Lose!`; 
+  }
+}
   
 
 
@@ -130,31 +127,31 @@ class GameObject {
     * deplete() -> removes 3 * damage health points from an enemy 
 */
   
-  class Villian extends Humanoid {
-    
-    constructor(villianAttributes) {
-       
-        // Allows inheritance of everything inside of Humanoid   
-        super(villianAttributes); 
-        
-        // new attribute for villian 
-        this.pain = villianAttributes.pain; 
-    }
-    
-    hurt(obj) {
-    
-        // subtract pain amount of health points from an object's healthpoints  
-        obj.healthPoints -= this.pain; 
-    
-        if (obj.healthPoints > 0) {
-        return `${obj.takeDamage()} ${this.name} depleted ${this.pain} health point(s) from ${obj.name}. You have ${obj.healthPoints} remaining.`
-        }
-        
-        // health points <= 0 
-        return `${this.name} killed ${obj.name}! ${obj.destroy()} Villians Reign Once Again!`; 
-    }
+class Villian extends Humanoid {
+  
+  constructor(villianAttributes) {
+      
+      // Allows inheritance of everything inside of Humanoid   
+      super(villianAttributes); 
+      
+      // new attribute for villian 
+      this.pain = villianAttributes.pain; 
   }
- 
+  
+  hurt(obj) {
+  
+      // subtract pain amount of health points from an object's healthpoints  
+      obj.healthPoints -= this.pain; 
+  
+      if (obj.healthPoints > 0) {
+      return `${obj.takeDamage()} ${this.name} depleted ${this.pain} health point(s) from ${obj.name}. You have ${obj.healthPoints} remaining.`
+      }
+      
+      // health points <= 0 
+      return `${this.name} killed ${obj.name}! ${obj.destroy()} Villians Reign Once Again!`; 
+  }
+}
+
   
 
   // Test you work by un-commenting these 3 objects and the list of console logs below: --- Done 
