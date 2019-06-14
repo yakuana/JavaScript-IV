@@ -6,17 +6,17 @@ This challenge focuses on classes in JavaScript using the new `class` keyword.
 
 **Follow these steps to set up and work on your project:**
 
-* [ ] Create a forked copy of this project.
-* [ ] Add your project manager as collaborator on Github.
-* [ ] Clone your OWN version of the repository (Not Lambda's by mistake!).
-* [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-* [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
-* [ ] Push commits: git push origin `<firstName-lastName>`.
+* [x] Create a forked copy of this project.
+* [x] Add your project manager as collaborator on Github.
+* [x] Clone your OWN version of the repository (Not Lambda's by mistake!).
+* [x] Create a new branch: git checkout -b `<firstName-lastName>`.
+* [x] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+* [x] Push commits: git push origin `<firstName-lastName>`.
 
 **Follow these steps for completing your project.**
 
-* [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request**
-* [ ] Add your project manager as a reviewer on the pull-request
+* [x] Submit a Pull-Request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request**
+* [x] Add your project manager as a reviewer on the pull-request
 * [ ] Your project manager will count the project as complete by merging the branch back into master.
 
 ## Assignment Description
@@ -112,8 +112,8 @@ const fred = new Instructor({
 
 #### Stretch Problem
 
-* Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
-* Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
-* Add a graduate method to a student.
-  * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
+* Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100. --- DONE 
+* Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help. --- DONE 
+* Add a graduate method to a student.  --- DONE 
+  * This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School  
   * If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
